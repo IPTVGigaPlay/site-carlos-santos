@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carlos Santos Unipessoal Lda. | Metalomecânica e Estruturas Metálicas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-real: #2B529A;
+            --azul-escuro: #112347;
+            --prata: #8E97A0;
+            --cinza-claro: #F4F6F9;
+            --branco: #FFFFFF;
+            --texto-escuro: #1C2536;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--texto-escuro);
+            background-color: var(--branco);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, .logo-text, nav a {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* HEADER FIXO */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--azul-escuro);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 8%;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border-bottom: 2px solid var(--prata);
+        }
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-text {
+            color: var(--branco);
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .logo-text span {
+            color: var(--prata);
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 400;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--branco);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--prata);
+        }
+
+        .btn-orcamento {
+            background-color: var(--azul-real);
+            color: var(--branco) !important;
+            padding: 10px 20px;
+            border-radius: 4px;
+            border: 1px solid var(--prata);
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .btn-orcamento:hover {
+            background-color: var(--branco);
+            color: var(--azul-escuro) !important;
+        }
+
+        /* SEÇÃO HERO (INÍCIO) */
+        #inicio {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(17,35,71,0.92), rgba(43,82,154,0.85)), 
+                        url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            padding: 0 8%;
+            color: var(--branco);
+            margin-top: 60px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--prata);
+            padding-left: 15px;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: #D1D5DB;
+            margin-bottom: 300px;
+            margin-bottom: 30px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-primary {
+            background-color: var(--azul-real);
+            color: var(--branco);
+            padding: 12px 28px;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 4px;
+            border: 1px solid var(--prata);
+            display: inline-block;
+        }
+
+        /* SEÇÕES GERAIS */
+        section {
+            padding: 80px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--azul-escuro);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--azul-real);
+        }
+
+        /* EMPRESA */
+        #empresa {
+            background-color: var(--cinza-claro);
+        }
+
+        .empresa-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .feature-box {
+            background: var(--branco);
+            padding: 25px;
+            border-radius: 4px;
+            border-top: 4px solid var(--azul-real);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        /* SERVIÇOS */
+        #servicos {
+            background-color: var(--azul-escuro);
+            color: var(--branco);
+        }
+
+        #servicos .section-title h2 {
+            color: var(--branco);
+        }
+
+        .servicos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .servico-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--prata);
+            padding: 30px;
+            border-radius: 6px;
+            transition: transform 0.3s;
+        }
+
+        .servico-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--azul-real);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .servico-card h3 {
+            color: var(--branco);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            border-bottom: 2px solid var(--azul-real);
+            padding-bottom: 8px;
+        }
+
+        .servico-card .subtitle {
+            color: var(--prata);
+            font-size: 0.85rem;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .servico-card ul {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .servico-card ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #D1D5DB;
+        }
+
+        .servico-card ul li::before {
+            content: "■";
+            color: var(--azul-real);
+            position: absolute;
+            left: 0;
+            font-size: 0.8rem;
+        }
+
+        /* PORTFÓLIO */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .photo-placeholder {
+            background-color: #E2E8F0;
+            border: 2px dashed var(--prata);
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--prata);
+            font-weight: 600;
+            border-radius: 4px;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* CONTACTOS & FORMULÁRIO */
+        #contactos {
+            background-color: var(--azul-escuro);
+            color: var(--branco);
+        }
+
+        .contactos-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            color: #D1D5DB;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 4px;
+            border: 1px solid var(--prata);
+            background: #0B172E;
+            color: var(--branco);
+            font-family: inherit;
+        }
+
+        button[type="submit"] {
+            background-color: var(--azul-real);
+            color: var(--branco);
+            border: 1px solid var(--prata);
+            padding: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        footer {
+            background-color: #081021;
+            color: var(--prata);
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            border-top: 1px solid #1C2E4A;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 900px) {
+            .empresa-grid, .servicos-grid, .portfolio-grid, .contactos-container, .features-grid {
+                grid-template-columns: 1fr;
+            }
+            nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER / MENU -->
+    <header>
+        <div class="logo-box">
+            <div class="logo-text">CARLOS SANTOS <span>UNIPESSOAL LDA.</span></div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#empresa">Empresa</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#portfolio">Portfólio</a></li>
+                <li><a href="#contactos" class="btn-orcamento">Pedir Orçamento</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- INÍCIO / HERO -->
+    <section id="inicio">
+        <div class="hero-content">
+            <h1>Soluções de Precisão em Metalomecânica, Estruturas Metálicas e Construção Civil</h1>
+            <p>Rigor técnico, capacidade fabril e qualidade na execução de projetos industriais e por medida.</p>
+            <div class="hero-btns">
+                <a href="#portfolio" class="btn-primary">Ver Portfólio</a>
+                <a href="#contactos" class="btn-primary" style="background: transparent; border-color: var(--branco);">Falar com a Equipa</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE NÓS -->
+    <section id="empresa">
+        <div class="section-title">
+            <h2>A Empresa</h2>
+        </div>
+        <div class="empresa-grid">
+            <div>
+                <p>A <strong>Carlos Santos Unipessoal Lda.</strong> desenvolve soluções completas e integradas no setor da metalomecânica, estruturas metálicas e apoio à construção civil.</p>
+                <br>
+                <p>Focados na excelência técnica, combinamos processos modernos, rigor de fabrico e uma equipa qualificada para responder com máxima eficácia às exigências de projetos industriais, comerciais e particulares.</p>
+            </div>
+            <div>
+                <div class="feature-box" style="margin-bottom: 15px;">
+                    <h4>⚙️ Precisão e Tecnologia</h4>
+                    <p>Capacidade fabril adaptada a tolerâncias rigorosas e desenhos técnicos complexos.</p>
+                </div>
+                <div class="feature-box" style="margin-bottom: 15px;">
+                    <h4>📐 Soluções Por Medida</h4>
+                    <p>Execução e acompanhamento desde a fase de projeto até à instalação no terreno.</p>
+                </div>
+                <div class="feature-box">
+                    <h4>🛡️ Rigor e Segurança</h4>
+                    <p>Compromisso total com normas de qualidade, cumprimento de prazos e segurança operacional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section id="servicos">
+        <div class="section-title">
+            <h2>Nossos Serviços</h2>
+        </div>
+        <div class="servicos-grid">
+            
+            <!-- CARD 1 -->
+            <div class="servico-card">
+                <h3>1. Metalomecânica de Precisão</h3>
+                <div class="subtitle">Usinagem, Corte e Fabricação de Peças por Medida</div>
+                <p>Execução de peças, tubagens e componentes metálicos com rigoroso cumprimento de tolerâncias dimensionais e desenhos técnicos.</p>
+                <ul>
+                    <li>Corte, quinagem e conformação de chapa</li>
+                    <li>Fabrico e montagem de tubagens industriais (aço carbono e inox)</li>
+                    <li>Caldeiraria ligeira e pesada em Aço Carbono, Inox e Alumínio</li>
+                    <li><strong>Processos de soldadura certificados (MIG/MAG, ER e TIG)</strong></li>
+                    <li>Fabrico de componentes industriais e protótipos</li>
+                </ul>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="servico-card">
+                <h3>2. Estruturas Metálicas</h3>
+                <div class="subtitle">Conceção, Fabrico e Montagem de Grandes Estruturas</div>
+                <p>Soluções engenheiradas para suporte de cargas e ampliações industriais, priorizando a estabilidade, durabilidade e proteção contra agentes externos.</p>
+                <ul>
+                    <li>Pavilhões industriais, armazéns e coberturas</li>
+                    <li>Mezaninos, plataformas de trabalho e passadiços</li>
+                    <li>Vigamentos, pilares e treliças metálicas</li>
+                </ul>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="servico-card">
+                <h3>3. Serralharia para Construção Civil</h3>
+                <div class="subtitle">Elementos Estruturais, Acabamentos e Sistemas de AVAC</div>
+                <p>Apoio integral a empreitadas de construção civil, fornecendo elementos metálicos funcionais, de segurança, reforço estrutural e execução de sistemas de AVAC.</p>
+                <ul>
+                    <li>Guarda-corpos, varandins e escadas (interiores e de emergência)</li>
+                    <li>Portões industriais, vedações e grelhas de ventilação</li>
+                    <li>Fabrico de suportes, montagem de condutas e trabalho com o sistema AVAC</li>
+                    <li>Estruturas de reforço metálico para reabilitação de edifícios</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PORTFÓLIO -->
+    <section id="portfolio">
+        <div class="section-title">
+            <h2>Portfólio / Trabalhos</h2>
+        </div>
+        <div class="portfolio-grid">
+            <div class="photo-placeholder">
+                📷 Foto Projeto 1
+                <span style="font-size:0.8rem; margin-top:5px;">(Espaço reservado para foto)</span>
+            </div>
+            <div class="photo-placeholder">
+                📷 Foto Projeto 2
+                <span style="font-size:0.8rem; margin-top:5px;">(Espaço reservado para foto)</span>
+            </div>
+            <div class="photo-placeholder">
+                📷 Foto Projeto 3
+                <span style="font-size:0.8rem; margin-top:5px;">(Espaço reservado para foto)</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTOS -->
+    <section id="contactos">
+        <div class="section-title">
+            <h2 style="color:var(--branco)">Pedir Orçamento</h2>
+        </div>
+        <div class="contactos-container">
+            <div class="contact-info">
+                <h3>Carlos Santos Unipessoal Lda.</h3>
+                <br>
+                <p>📍 <strong>Morada:</strong> [Insira a Morada da Oficina aqui]</p>
+                <p>📞 <strong>Telefone:</strong> [Insira o Contacto Telefónico aqui]</p>
+                <p>✉️ <strong>E-mail:</strong> [Insira o E-mail Profissional aqui]</p>
+                <p>🕒 <strong>Horário:</strong> Segunda a Sexta: 08:00 - 18:00</p>
+            </div>
+            <div>
+                <form action="#" method="post">
+                    <input type="text" placeholder="Seu Nome / Empresa" required>
+                    <input type="email" placeholder="Seu E-mail" required>
+                    <input type="tel" placeholder="Seu Telefone" required>
+                    <select>
+                        <option value="">Selecione o Serviço Pretendido</option>
+                        <option value="metalomecanica">Metalomecânica de Precisão / Tubagens</option>
+                        <option value="estruturas">Estruturas Metálicas</option>
+                        <option value="construcao">Serralharia Civil / AVAC</option>
+                    </select>
+                    <textarea rows="4" placeholder="Descrição rápida do seu projeto..." required></textarea>
+                    <label style="font-size:0.8rem; color:var(--prata);">Anexar Desenho Técnico / PDF / Imagem:</label>
+                    <input type="file" style="padding:5px;">
+                    <button type="submit">Enviar Pedido de Orçamento</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; Carlos Santos Unipessoal Lda. — Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
