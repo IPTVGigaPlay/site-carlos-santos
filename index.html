@@ -494,25 +494,23 @@
             <div class="contact-info">
                 <h3>Carlos Santos Unipessoal Lda.</h3>
                 <br>
-                <p>📍 <strong>Morada:</strong> [Insira a Morada da Oficina aqui]</p>
-                <p>📞 <strong>Telefone:</strong> [Insira o Contacto Telefónico aqui]</p>
-                <p>✉️ <strong>E-mail:</strong> [Insira o E-mail Profissional aqui]</p>
+                <p>📍 <strong>Morada:</strong> Rua Padre Alírio de Mello, Bloco B</p>
+                <p>📞 <strong>Telefone:</strong> <a href="tel:+351910945681">+351 910 945 681</a></p>
+                <p>✉️ <strong>E-mail:</strong> <a href="mailto:magnoportugal91@gmail.com">magnoportugal91@gmail.com</a></p>
                 <p>🕒 <strong>Horário:</strong> Segunda a Sexta: 08:00 - 18:00</p>
             </div>
             <div>
-                <form action="#" method="post">
-                    <input type="text" placeholder="Seu Nome / Empresa" required>
-                    <input type="email" placeholder="Seu E-mail" required>
-                    <input type="tel" placeholder="Seu Telefone" required>
-                    <select>
+                <form action="https://formsubmit.co/magnoportugal91@gmail.com" method="POST">
+                    <input type="text" name="nome" placeholder="Seu Nome / Empresa" required>
+                    <input type="email" name="email" placeholder="Seu E-mail" required>
+                    <input type="tel" name="telefone" placeholder="Seu Telefone" required>
+                    <select name="servico">
                         <option value="">Selecione o Serviço Pretendido</option>
                         <option value="metalomecanica">Metalomecânica de Precisão / Tubagens</option>
                         <option value="estruturas">Estruturas Metálicas</option>
                         <option value="construcao">Serralharia Civil / AVAC</option>
                     </select>
-                    <textarea rows="4" placeholder="Descrição rápida do seu projeto..." required></textarea>
-                    <label style="font-size:0.8rem; color:var(--prata);">Anexar Desenho Técnico / PDF / Imagem:</label>
-                    <input type="file" style="padding:5px;">
+                    <textarea name="mensagem" rows="4" placeholder="Descrição rápida do seu projeto..." required></textarea>
                     <button type="submit">Enviar Pedido de Orçamento</button>
                 </form>
             </div>
