@@ -263,100 +263,37 @@
             font-size: 0.8rem;
         }
 
-        /* PORTFÓLIO - CARROSSEL */
+        /* PORTFÓLIO - CARROSSEL PEQUENO E LIMPO */
         #portfolio {
             background-color: var(--cinza-claro);
+            padding-bottom: 40px;
         }
 
         .carousel-container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
-            position: relative;
             overflow: hidden;
             border-radius: 8px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            border: 2px solid var(--prata);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 1px solid var(--prata);
         }
 
         .carousel-slides {
             display: flex;
-            transition: transform 0.5s ease-in-out;
+            width: 100%;
+            transition: transform 0.8s ease-in-out;
         }
 
         .carousel-slide {
             min-width: 100%;
-            position: relative;
+            flex-shrink: 0;
         }
 
         .carousel-slide img {
             width: 100%;
-            height: 450px;
+            height: 250px;
             object-fit: cover;
             display: block;
-        }
-
-        .carousel-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(17, 35, 71, 0.9));
-            color: var(--branco);
-            padding: 20px;
-            text-align: center;
-        }
-
-        .carousel-caption h3 {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-            color: var(--branco);
-        }
-
-        .carousel-caption p {
-            font-size: 0.9rem;
-            color: var(--prata);
-        }
-
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(17, 35, 71, 0.7);
-            color: var(--branco);
-            border: 1px solid var(--prata);
-            font-size: 1.5rem;
-            padding: 10px 15px;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background 0.3s;
-            z-index: 10;
-        }
-
-        .carousel-btn:hover {
-            background: var(--azul-real);
-        }
-
-        .carousel-btn.prev { left: 15px; }
-        .carousel-btn.next { right: 15px; }
-
-        .carousel-dots {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            background-color: var(--prata);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .dot.active {
-            background-color: var(--azul-real);
         }
 
         /* CONTACTOS & FORMULÁRIO */
@@ -440,7 +377,7 @@
             .btn-primary { width: 100%; }
 
             .carousel-slide img {
-                height: 280px;
+                height: 180px;
             }
         }
     </style>
@@ -549,48 +486,24 @@
         </div>
     </section>
 
-    <!-- PORTFÓLIO (CARROSSEL ROTATIVO) -->
+    <!-- PORTFÓLIO (CARROSSEL SIMPLES E LIMPO) -->
     <section id="portfolio">
         <div class="section-title">
             <h2>Portfólio / Trabalhos</h2>
         </div>
         
         <div class="carousel-container">
-            <button class="carousel-btn prev" onclick="moveSlide(-1)">❮</button>
-            <button class="carousel-btn next" onclick="moveSlide(1)">❯</button>
-
             <div class="carousel-slides" id="carouselSlides">
-                <!-- Foto 1 -->
                 <div class="carousel-slide">
-                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80" alt="Metalomecânica de Precisão e Tubagens">
-                    <div class="carousel-caption">
-                        <h3>Metalomecânica & Tubagens Industriais</h3>
-                        <p>Soldadura certificada e fabrico por medida</p>
-                    </div>
+                    <img src="foto1.jpg" alt="Trabalho 1">
                 </div>
-                <!-- Foto 2 -->
                 <div class="carousel-slide">
-                    <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80" alt="Montagem de Estruturas Metálicas">
-                    <div class="carousel-caption">
-                        <h3>Estruturas Metálicas & Pavilhões</h3>
-                        <p>Suporte de cargas e proteção contra agentes externos</p>
-                    </div>
+                    <img src="foto2.jpg" alt="Trabalho 2">
                 </div>
-                <!-- Foto 3 -->
                 <div class="carousel-slide">
-                    <img src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=80" alt="Serralharia Civil e Sistemas AVAC">
-                    <div class="carousel-caption">
-                        <h3>Serralharia Civil & Instalações AVAC</h3>
-                        <p>Condutas, estruturas de apoio e acabamentos industriais</p>
-                    </div>
+                    <img src="foto3.jpg" alt="Trabalho 3">
                 </div>
             </div>
-        </div>
-
-        <div class="carousel-dots">
-            <span class="dot active" onclick="currentSlide(0)"></span>
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
         </div>
     </section>
 
@@ -631,49 +544,16 @@
         <p>&copy; Carlos Santos Unipessoal Lda. — Todos os direitos reservados.</p>
     </footer>
 
-    <!-- SCRIPT DO CARROSSEL -->
+    <!-- SCRIPT DE ROTAÇÃO SIMPLES -->
     <script>
-        let currentIdx = 0;
-        const slides = document.querySelectorAll('.carousel-slide');
-        const dots = document.querySelectorAll('.dot');
-        const totalSlides = slides.length;
-        let autoSlideInterval;
+        let index = 0;
+        const container = document.getElementById('carouselSlides');
+        const total = document.querySelectorAll('.carousel-slide').length;
 
-        function showSlide(index) {
-            if (index >= totalSlides) currentIdx = 0;
-            else if (index < 0) currentIdx = totalSlides - 1;
-            else currentIdx = index;
-
-            const container = document.getElementById('carouselSlides');
-            container.style.transform = `translateX(-${currentIdx * 100}%)`;
-
-            dots.forEach(dot => dot.classList.remove('active'));
-            dots[currentIdx].classList.add('active');
-        }
-
-        function moveSlide(step) {
-            showSlide(currentIdx + step);
-            resetAutoSlide();
-        }
-
-        function currentSlide(index) {
-            showSlide(index);
-            resetAutoSlide();
-        }
-
-        function startAutoSlide() {
-            autoSlideInterval = setInterval(() => {
-                showSlide(currentIdx + 1);
-            }, 4000); // Muda a foto a cada 4 segundos
-        }
-
-        function resetAutoSlide() {
-            clearInterval(autoSlideInterval);
-            startAutoSlide();
-        }
-
-        // Iniciar rotação automática ao carregar
-        startAutoSlide();
+        setInterval(() => {
+            index = (index + 1) % total;
+            container.style.transform = `translateX(-${index * 100}%)`;
+        }, 3000); // Rota a cada 3 segundos
     </script>
 </body>
 </html>
