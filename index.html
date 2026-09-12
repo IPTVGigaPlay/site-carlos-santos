@@ -263,26 +263,100 @@
             font-size: 0.8rem;
         }
 
-        /* PORTFÓLIO */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+        /* PORTFÓLIO - CARROSSEL */
+        #portfolio {
+            background-color: var(--cinza-claro);
         }
 
-        .photo-placeholder {
-            background-color: #E2E8F0;
-            border: 2px dashed var(--prata);
-            height: 220px;
+        .carousel-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border: 2px solid var(--prata);
+        }
+
+        .carousel-slides {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: var(--prata);
-            font-weight: 600;
-            border-radius: 4px;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(17, 35, 71, 0.9));
+            color: var(--branco);
+            padding: 20px;
             text-align: center;
-            padding: 10px;
+        }
+
+        .carousel-caption h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--branco);
+        }
+
+        .carousel-caption p {
+            font-size: 0.9rem;
+            color: var(--prata);
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(17, 35, 71, 0.7);
+            color: var(--branco);
+            border: 1px solid var(--prata);
+            font-size: 1.5rem;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.3s;
+            z-index: 10;
+        }
+
+        .carousel-btn:hover {
+            background: var(--azul-real);
+        }
+
+        .carousel-btn.prev { left: 15px; }
+        .carousel-btn.next { right: 15px; }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background-color: var(--prata);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .dot.active {
+            background-color: var(--azul-real);
         }
 
         /* CONTACTOS & FORMULÁRIO */
@@ -342,7 +416,6 @@
             border-top: 1px solid #1C2E4A;
         }
 
-        /* AJUSTES ESPECÍFICOS PARA DISPOSITIVOS MÓVEIS */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
@@ -356,22 +429,18 @@
                 justify-content: center;
             }
 
-            nav a {
-                font-size: 0.75rem;
-            }
-
-            .btn-orcamento {
-                padding: 6px 12px;
-                font-size: 0.75rem;
-            }
+            nav a { font-size: 0.75rem; }
+            .btn-orcamento { padding: 6px 12px; font-size: 0.75rem; }
 
             .hero-btns {
                 flex-direction: column;
                 width: 100%;
             }
 
-            .btn-primary {
-                width: 100%;
+            .btn-primary { width: 100%; }
+
+            .carousel-slide img {
+                height: 280px;
             }
         }
     </style>
@@ -480,24 +549,48 @@
         </div>
     </section>
 
-    <!-- PORTFÓLIO -->
+    <!-- PORTFÓLIO (CARROSSEL ROTATIVO) -->
     <section id="portfolio">
         <div class="section-title">
             <h2>Portfólio / Trabalhos</h2>
         </div>
-        <div class="portfolio-grid">
-            <div class="photo-placeholder">
-                📷 Projetos Executados
-                <span style="font-size:0.8rem; margin-top:5px;">(Fotos a adicionar brevemente)</span>
+        
+        <div class="carousel-container">
+            <button class="carousel-btn prev" onclick="moveSlide(-1)">❮</button>
+            <button class="carousel-btn next" onclick="moveSlide(1)">❯</button>
+
+            <div class="carousel-slides" id="carouselSlides">
+                <!-- Foto 1 -->
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80" alt="Metalomecânica de Precisão e Tubagens">
+                    <div class="carousel-caption">
+                        <h3>Metalomecânica & Tubagens Industriais</h3>
+                        <p>Soldadura certificada e fabrico por medida</p>
+                    </div>
+                </div>
+                <!-- Foto 2 -->
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80" alt="Montagem de Estruturas Metálicas">
+                    <div class="carousel-caption">
+                        <h3>Estruturas Metálicas & Pavilhões</h3>
+                        <p>Suporte de cargas e proteção contra agentes externos</p>
+                    </div>
+                </div>
+                <!-- Foto 3 -->
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=80" alt="Serralharia Civil e Sistemas AVAC">
+                    <div class="carousel-caption">
+                        <h3>Serralharia Civil & Instalações AVAC</h3>
+                        <p>Condutas, estruturas de apoio e acabamentos industriais</p>
+                    </div>
+                </div>
             </div>
-            <div class="photo-placeholder">
-                📷 Estruturas Metálicas
-                <span style="font-size:0.8rem; margin-top:5px;">(Fotos a adicionar brevemente)</span>
-            </div>
-            <div class="photo-placeholder">
-                📷 Trabalhos em Inox & AVAC
-                <span style="font-size:0.8rem; margin-top:5px;">(Fotos a adicionar brevemente)</span>
-            </div>
+        </div>
+
+        <div class="carousel-dots">
+            <span class="dot active" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
         </div>
     </section>
 
@@ -538,5 +631,49 @@
         <p>&copy; Carlos Santos Unipessoal Lda. — Todos os direitos reservados.</p>
     </footer>
 
+    <!-- SCRIPT DO CARROSSEL -->
+    <script>
+        let currentIdx = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = slides.length;
+        let autoSlideInterval;
+
+        function showSlide(index) {
+            if (index >= totalSlides) currentIdx = 0;
+            else if (index < 0) currentIdx = totalSlides - 1;
+            else currentIdx = index;
+
+            const container = document.getElementById('carouselSlides');
+            container.style.transform = `translateX(-${currentIdx * 100}%)`;
+
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentIdx].classList.add('active');
+        }
+
+        function moveSlide(step) {
+            showSlide(currentIdx + step);
+            resetAutoSlide();
+        }
+
+        function currentSlide(index) {
+            showSlide(index);
+            resetAutoSlide();
+        }
+
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(() => {
+                showSlide(currentIdx + 1);
+            }, 4000); // Muda a foto a cada 4 segundos
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        }
+
+        // Iniciar rotação automática ao carregar
+        startAutoSlide();
+    </script>
 </body>
 </html>
