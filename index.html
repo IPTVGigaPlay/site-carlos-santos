@@ -27,6 +27,14 @@
             color: var(--texto-escuro);
             background-color: var(--branco);
             line-height: 1.6;
+            top: 0 !important;
+        }
+
+        /* Ocultar elementos padrão do Google Translate */
+        .goog-te-banner-frame.skiptranslate, 
+        .goog-te-gadget-icon,
+        #google_translate_element {
+            display: none !important;
         }
 
         h1, h2, h3, h4, .logo-text, nav a {
@@ -103,6 +111,82 @@
         .btn-orcamento:hover {
             background-color: var(--branco);
             color: var(--azul-escuro) !important;
+        }
+
+        /* SELETOR DE IDIOMAS COM BANDEIRAS */
+        .language-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-btn {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--prata);
+            color: var(--branco);
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .lang-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .lang-btn img {
+            width: 20px;
+            height: 14px;
+            object-fit: cover;
+            border-radius: 2px;
+        }
+
+        .lang-options {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            margin-top: 5px;
+            background-color: var(--azul-escuro);
+            border: 1px solid var(--prata);
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            min-width: 150px;
+            z-index: 1001;
+            overflow: hidden;
+        }
+
+        .language-dropdown:hover .lang-options {
+            display: block;
+        }
+
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            color: var(--branco);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .lang-option:hover {
+            background-color: var(--azul-real);
+        }
+
+        .lang-option img {
+            width: 20px;
+            height: 14px;
+            object-fit: cover;
+            border-radius: 2px;
         }
 
         /* SEÇÃO HERO (INÍCIO) */
@@ -262,7 +346,7 @@
             font-size: 0.8rem;
         }
 
-        /* PORTFÓLIO - CARROSSEL CENTRADO E CORRIGIDO */
+        /* PORTFÓLIO - CARROSSEL CENTRADO */
         #portfolio {
             background-color: var(--cinza-claro);
             padding: 60px 5%;
@@ -384,6 +468,9 @@
 </head>
 <body>
 
+    <!-- ELEMENTO INVISÍVEL PARA GOOGLE TRANSLATE -->
+    <div id="google_translate_element"></div>
+
     <!-- HEADER / MENU -->
     <header>
         <div class="logo-box">
@@ -396,6 +483,32 @@
                 <li><a href="#servicos">Serviços</a></li>
                 <li><a href="#portfolio">Portfólio</a></li>
                 <li><a href="#contactos" class="btn-orcamento">Pedir Orçamento</a></li>
+                
+                <!-- SELETOR DE IDIOMAS COM BANDEIRAS -->
+                <li>
+                    <div class="language-dropdown">
+                        <button class="lang-btn" id="currentLangBtn">
+                            <img src="https://flagcdn.com/w40/pt.png" alt="Portugal"> PT ▾
+                        </button>
+                        <div class="lang-options">
+                            <div class="lang-option" onclick="translatePage('pt', 'PT', 'https://flagcdn.com/w40/pt.png')">
+                                <img src="https://flagcdn.com/w40/pt.png" alt="Portugal"> Português
+                            </div>
+                            <div class="lang-option" onclick="translatePage('en', 'EN', 'https://flagcdn.com/w40/gb.png')">
+                                <img src="https://flagcdn.com/w40/gb.png" alt="Reino Unido"> English
+                            </div>
+                            <div class="lang-option" onclick="translatePage('es', 'ES', 'https://flagcdn.com/w40/es.png')">
+                                <img src="https://flagcdn.com/w40/es.png" alt="Espanha"> Español
+                            </div>
+                            <div class="lang-option" onclick="translatePage('fr', 'FR', 'https://flagcdn.com/w40/fr.png')">
+                                <img src="https://flagcdn.com/w40/fr.png" alt="França"> Français
+                            </div>
+                            <div class="lang-option" onclick="translatePage('nl', 'NL', 'https://flagcdn.com/w40/be.png')">
+                                <img src="https://flagcdn.com/w40/be.png" alt="Bélgica"> Nederlands
+                            </div>
+                        </div>
+                    </div>
+                </li>
             </ul>
         </nav>
     </header>
@@ -486,7 +599,7 @@
         </div>
     </section>
 
-    <!-- PORTFÓLIO (CARROSSEL CORRIGIDO E CENTRADO) -->
+    <!-- PORTFÓLIO (CARROSSEL CENTRADO) -->
     <section id="portfolio">
         <div class="section-title">
             <h2>Portfólio / Trabalhos</h2>
@@ -518,11 +631,12 @@
                 <br>
                 <p>📍 <strong>Morada:</strong> Rua Padre Alírio de Mello, Bloco B</p>
                 <p>📞 <strong>Telefone:</strong> <a href="tel:+351910945681">+351 910 945 681</a></p>
-                <p>✉️ <strong>E-mail:</strong> <a href="mailto:magnoportugal91@gmail.com">magnoportugal91@gmail.com</a></p>
+                <p>✉️ <strong>E-mail:</strong> <a href="mailto:comercial@csmetal.pt">comercial@csmetal.pt</a></p>
                 <p>🕒 <strong>Horário:</strong> Segunda a Sexta: 08:00 - 18:00</p>
             </div>
             <div>
-                <form action="https://formsubmit.co/magnoportugal91@gmail.com" method="POST">
+                <!-- FORMULÁRIO CONFIGURADO PARA COMERCIAL@CSMETAL.PT -->
+                <form action="https://formsubmit.co/comercial@csmetal.pt" method="POST">
                     <input type="text" name="nome" placeholder="Seu Nome / Empresa" required>
                     <input type="email" name="email" placeholder="Seu E-mail" required>
                     <input type="tel" name="telefone" placeholder="Seu Telefone" required>
@@ -544,7 +658,7 @@
         <p>&copy; Carlos Santos Unipessoal Lda. — Todos os direitos reservados.</p>
     </footer>
 
-    <!-- SCRIPT DE ROTAÇÃO AUTOMÁTICA -->
+    <!-- SCRIPT DE ROTAÇÃO AUTOMÁTICA DO PORTFÓLIO -->
     <script>
         let currentSlideIndex = 0;
         const slidesContainer = document.getElementById('carouselSlides');
@@ -555,5 +669,36 @@
             slidesContainer.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
         }, 3000);
     </script>
+
+    <!-- SCRIPT DO GOOGLE TRANSLATE E LÓGICA DAS BANDEIRAS -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'pt',
+                includedLanguages: 'pt,en,es,fr,nl',
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+
+        function translatePage(langCode, langText, flagUrl) {
+            const btn = document.getElementById('currentLangBtn');
+            btn.innerHTML = `<img src="${flagUrl}" alt="${langText}"> ${langText} ▾`;
+
+            if (langCode === 'pt') {
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=." + location.hostname;
+                location.reload();
+                return;
+            }
+
+            const selectElem = document.querySelector('.goog-te-combo');
+            if (selectElem) {
+                selectElem.value = langCode;
+                selectElem.dispatchEvent(new Event('change'));
+            }
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 </html>
