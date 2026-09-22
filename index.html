@@ -22,28 +22,32 @@
             scroll-behavior: smooth;
         }
 
-        /* REMOVER BARRA SUPERIOR E AVISOS DO GOOGLE TRANSLATE */
-        .goog-te-banner-frame.skiptranslate,
+        /* OCULTAR DEFINITIVAMENTE A BARRA SUPERIOR DO GOOGLE TRANSLATE VIA CSS */
         .goog-te-banner-frame,
+        .goog-te-banner-frame.skiptranslate,
         .goog-te-balloon-frame,
         #goog-gt-tt,
         .goog-te-spinner-pos,
         .goog-te-gadget-icon,
-        #google_translate_element {
+        #google_translate_element,
+        iframe.goog-te-banner-frame,
+        .skiptranslate {
             display: none !important;
             visibility: hidden !important;
+            height: 0 !important;
+            width: 0 !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
         }
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            color: var(--texto-escuro);
-            background-color: var(--branco);
-            line-height: 1.6;
+        html, body {
             top: 0px !important;
             position: static !important;
+            margin-top: 0px !important;
+            padding-top: 0px !important;
         }
 
-        /* Impedir que o Google altere o estilo dos textos ao traduzir */
+        /* Impedir destaque de fundo amarelo ao traduzir */
         font {
             background-color: transparent !important;
             box-shadow: none !important;
@@ -681,7 +685,7 @@
         }, 3000);
     </script>
 
-    <!-- SCRIPT DO GOOGLE TRANSLATE E LÓGICA DAS BANDEIRAS -->
+    <!-- SCRIPT DO GOOGLE TRANSLATE, REMOÇÃO DA BARRA E LÓGICA DAS BANDEIRAS -->
     <script type="text/javascript">
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
@@ -708,6 +712,16 @@
                 selectElem.dispatchEvent(new Event('change'));
             }
         }
+
+        // JS PARA REMOVER A BARRA SUPERIOR INJETADA DINAMICAMENTE
+        setInterval(() => {
+            const frame = document.querySelector('.goog-te-banner-frame');
+            if (frame) {
+                frame.remove();
+            }
+            document.body.style.top = '0px';
+            document.documentElement.style.top = '0px';
+        }, 300);
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
