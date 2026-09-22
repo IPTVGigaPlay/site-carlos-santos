@@ -22,19 +22,31 @@
             scroll-behavior: smooth;
         }
 
+        /* REMOVER BARRA SUPERIOR E AVISOS DO GOOGLE TRANSLATE */
+        .goog-te-banner-frame.skiptranslate,
+        .goog-te-banner-frame,
+        .goog-te-balloon-frame,
+        #goog-gt-tt,
+        .goog-te-spinner-pos,
+        .goog-te-gadget-icon,
+        #google_translate_element {
+            display: none !important;
+            visibility: hidden !important;
+        }
+
         body {
             font-family: 'Roboto', sans-serif;
             color: var(--texto-escuro);
             background-color: var(--branco);
             line-height: 1.6;
-            top: 0 !important;
+            top: 0px !important;
+            position: static !important;
         }
 
-        /* Ocultar elementos padrão do Google Translate */
-        .goog-te-banner-frame.skiptranslate, 
-        .goog-te-gadget-icon,
-        #google_translate_element {
-            display: none !important;
+        /* Impedir que o Google altere o estilo dos textos ao traduzir */
+        font {
+            background-color: transparent !important;
+            box-shadow: none !important;
         }
 
         h1, h2, h3, h4, .logo-text, nav a {
@@ -635,7 +647,6 @@
                 <p>🕒 <strong>Horário:</strong> Segunda a Sexta: 08:00 - 18:00</p>
             </div>
             <div>
-                <!-- FORMULÁRIO CONFIGURADO PARA COMERCIAL@CSMETAL.PT -->
                 <form action="https://formsubmit.co/comercial@csmetal.pt" method="POST">
                     <input type="text" name="nome" placeholder="Seu Nome / Empresa" required>
                     <input type="email" name="email" placeholder="Seu E-mail" required>
