@@ -676,10 +676,9 @@
                     <p>Obrigado pelo seu contacto. A nossa equipa analisará os detalhes do seu projeto e responderá brevemente.</p>
                 </div>
 
-                <!-- FORMULÁRIO COM REDIRECIONAMENTO NATIVO PARA O PRÓPRIO SITE -->
-                <form action="https://formsubmit.co/comercial@csmetal.pt" method="POST">
-                    <!-- PARÂMETROS ESCONDIDOS DO FORMSUBMIT -->
-                    <input type="hidden" name="_next" value="https://csmetal.pt/#sucesso">
+                <!-- FORMULÁRIO SEM CAPTCHA E COM ENVIO DIRETO -->
+                <form id="contactForm" action="https://formsubmit.co/comercial@csmetal.pt" method="POST">
+                    <!-- DESATIVAR CAPTCHA E REDIRECIONAMENTOS EXTERNOS -->
                     <input type="hidden" name="_captcha" value="false">
 
                     <input type="text" name="nome" placeholder="Seu Nome / Empresa" required>
@@ -692,7 +691,7 @@
                         <option value="construcao">Serralharia Civil / AVAC</option>
                     </select>
                     <textarea name="mensagem" rows="4" placeholder="Descrição rápida do seu projeto..." required></textarea>
-                    <button type="submit">Enviar Pedido de Orçamento</button>
+                    <button type="submit" id="submitBtn">Enviar Pedido de Orçamento</button>
                 </form>
             </div>
         </div>
@@ -714,13 +713,38 @@
             slidesContainer.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
         }, 3000);
 
-        // EXIBIR MENSAGEM DE SUCESSO SE O LINK TIVER #sucesso
-        if (window.location.hash === '#sucesso') {
-            const msgBox = document.getElementById('mensagemSucesso');
-            if (msgBox) {
-                msgBox.style.display = 'block';
-            }
-        }
+        // ENVIO DO FORMULÁRIO VIA AJAX (SEM RECARREGAR A PÁGINA E SEM CAPTCHA)
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'A ENVIAR...';
+
+            const formData = new FormData(contactForm);
+
+            fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    document.getElementById('mensagemSucesso').style.display = 'block';
+                    contactForm.reset();
+                    submitBtn.innerText = 'ENVIADO!';
+                } else {
+                    alert('Ocorreu um erro ao enviar. Por favor, tente novamente ou envie email direto.');
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = 'ENVIAR PEDIDO DE ORÇAMENTO';
+                }
+            }).catch(error => {
+                alert('Ocorreu um erro ao enviar. Por favor, tente novamente.');
+                submitBtn.disabled = false;
+                submitBtn.innerText = 'ENVIAR PEDIDO DE ORÇAMENTO';
+            });
+        });
     </script>
 
     <!-- SCRIPT DO GOOGLE TRANSLATE, REMOÇÃO DA BARRA E LÓGICA DAS BANDEIRAS -->
