@@ -13,6 +13,7 @@
             --cinza-claro: #F4F6F9;
             --branco: #FFFFFF;
             --texto-escuro: #1C2536;
+            --verde-sucesso: #28a745;
         }
 
         * {
@@ -444,6 +445,24 @@
             text-transform: uppercase;
         }
 
+        /* CAIXA DE MENSAGEM DE SUCESSO DO ORÇAMENTO */
+        .success-message {
+            display: none;
+            background-color: rgba(40, 167, 69, 0.15);
+            border: 2px solid var(--verde-sucesso);
+            color: #FFFFFF;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .success-message h4 {
+            color: #5ddc74;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
         footer {
             background-color: #081021;
             color: var(--prata);
@@ -647,12 +666,22 @@
                 <br>
                 <p>📍 <strong>Morada:</strong> Rua Padre Alírio de Mello, Bloco B</p>
                 <p>📞 <strong>Telefone:</strong> <a href="tel:+351910945681" class="notranslate">+351 910 945 681</a></p>
-                <!-- E-MAIL PROTEGIDO CONTRA TRADUÇÃO COM A CLASSE 'notranslate' -->
                 <p>✉️ <strong>E-mail:</strong> <a href="mailto:comercial@csmetal.pt" class="notranslate">comercial@csmetal.pt</a></p>
                 <p>🕒 <strong>Horário:</strong> Segunda a Sexta: 08:00 - 18:00</p>
             </div>
             <div>
+                <!-- MENSAGEM DE CONFIRMAÇÃO DE ENVIO -->
+                <div id="mensagemSucesso" class="success-message">
+                    <h4>✔ Pedido de Orçamento Enviado com Sucesso!</h4>
+                    <p>Obrigado pelo seu contacto. A nossa equipa analisará os detalhes do seu projeto e responderá brevemente.</p>
+                </div>
+
+                <!-- FORMULÁRIO COM REDIRECIONAMENTO NATIVO PARA O PRÓPRIO SITE -->
                 <form action="https://formsubmit.co/comercial@csmetal.pt" method="POST">
+                    <!-- PARÂMETROS ESCONDIDOS DO FORMSUBMIT -->
+                    <input type="hidden" name="_next" value="https://csmetal.pt/#sucesso">
+                    <input type="hidden" name="_captcha" value="false">
+
                     <input type="text" name="nome" placeholder="Seu Nome / Empresa" required>
                     <input type="email" name="email" placeholder="Seu E-mail" required>
                     <input type="tel" name="telefone" placeholder="Seu Telefone" required>
@@ -684,6 +713,14 @@
             currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
             slidesContainer.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
         }, 3000);
+
+        // EXIBIR MENSAGEM DE SUCESSO SE O LINK TIVER #sucesso
+        if (window.location.hash === '#sucesso') {
+            const msgBox = document.getElementById('mensagemSucesso');
+            if (msgBox) {
+                msgBox.style.display = 'block';
+            }
+        }
     </script>
 
     <!-- SCRIPT DO GOOGLE TRANSLATE, REMOÇÃO DA BARRA E LÓGICA DAS BANDEIRAS -->
