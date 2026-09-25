@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CS METAL (Member of CMS Group) | Metalomecânica e Estruturas Metálicas</title>
+    <title>CS METAL | Metalomecânica e Estruturas Metálicas</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -83,15 +83,28 @@
         .logo-text {
             color: var(--branco);
             font-weight: 800;
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             letter-spacing: 1px;
+            line-height: 1.1;
         }
 
         .logo-text span {
             color: var(--prata);
             display: block;
-            font-size: 0.65rem;
+            font-size: 0.55rem;
             font-weight: 400;
+            text-transform: none; /* Mantém maiúsculas e minúsculas normais */
+            letter-spacing: 0.5px;
+            opacity: 0.8;
+            margin-top: 2px;
+        }
+
+        /* Formatação discreta para o texto do grupo no corpo da página */
+        .group-subtext {
+            font-size: 0.75em;
+            font-weight: 400;
+            color: var(--prata);
+            text-transform: none;
         }
 
         nav ul {
@@ -509,7 +522,7 @@
     <!-- HEADER / MENU -->
     <header>
         <div class="logo-box">
-            <div class="logo-text notranslate">CS METAL <span>(Member of CMS Group)</span></div>
+            <div class="logo-text notranslate">CS METAL <span>Member of CMS Group</span></div>
         </div>
         <nav>
             <ul>
@@ -567,7 +580,7 @@
         </div>
         <div class="empresa-grid">
             <div>
-                <p>A <strong class="notranslate">CS METAL (Member of CMS Group)</strong> desenvolve soluções completas e integradas no setor da metalomecânica, estruturas metálicas e apoio à construção civil.</p>
+                <p>A <strong class="notranslate">CS METAL</strong> <span class="group-subtext notranslate">(Member of CMS Group)</span> desenvolve soluções completas e integradas no setor da metalomecânica, estruturas metálicas e apoio à construção civil.</p>
                 <br>
                 <p>Focados na excelência técnica, combinamos processos modernos, rigor de fabrico e uma equipa qualificada para responder com máxima eficácia às exigências de projetos industriais, comerciais e particulares.</p>
             </div>
@@ -662,7 +675,7 @@
         </div>
         <div class="contactos-container">
             <div class="contact-info">
-                <h3 class="notranslate">CS METAL (Member of CMS Group)</h3>
+                <h3 class="notranslate">CS METAL <span class="group-subtext" style="color: var(--prata); display: block; margin-top: 4px;">Member of CMS Group</span></h3>
                 <br>
                 <p>📍 <strong>Morada:</strong> Rua Padre Alírio de Mello, Bloco B</p>
                 <p>📞 <strong>Telefone:</strong> <a href="tel:+351910945681" class="notranslate">+351 910 945 681</a></p>
@@ -698,7 +711,7 @@
 
     <!-- FOOTER -->
     <footer>
-        <p>&copy; <span class="notranslate">CS METAL (Member of CMS Group)</span> — Todos os direitos reservados.</p>
+        <p>&copy; <span class="notranslate">CS METAL</span> <span class="group-subtext notranslate">(Member of CMS Group)</span> — Todos os direitos reservados.</p>
     </footer>
 
     <!-- SCRIPT DE ROTAÇÃO AUTOMÁTICA DO CARROSSEL -->
